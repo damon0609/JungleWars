@@ -1,0 +1,9 @@
+{
+"list":
+[
+	{"panelType":"Message","path":"UIPanel/MessagePanel"},
+	{"panelType":"Login","path":"UIPanel/LoginPanel"},
+	{"panelType":"Register","path":"UIPanel/RegisterPanel"}
+
+]
+}
