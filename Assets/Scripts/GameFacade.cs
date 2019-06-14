@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UI;
+using System.Text;
 
 public class GameFacade : MonoBehaviour {
 
@@ -24,14 +25,16 @@ public class GameFacade : MonoBehaviour {
     void Awake()
     {
         _instance = this;
-        networkManager = NetworkManager.instance;
-
+       networkManager = NetworkManager.instance;
 
         resManager = ResourcesManager.instance;
         uiManager = UIManager.instance;
     }
 	void Start () {
-        networkManager.SendAsync("你好");
+        for (int i = 0; i < 10; i++)
+        {
+            networkManager.SendAsync(i+"");
+        }
     }
     void Update () {
 

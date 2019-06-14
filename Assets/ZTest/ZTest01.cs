@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class ZTest01 : MonoBehaviour {
 
-    [SerializeField]
-    public EventHandler m_isLoginHandler;
-
-    // Use this for initialization
     void Start () {
-		
+
+        NetworkStream stream = new NetworkStream("damon");
+        foreach (byte b in stream.data)
+        {
+            Debug.Log(b);
+        }
 	}
 	
-	// Update is called once per frame
+	
 	void Update () {
 		
 	}

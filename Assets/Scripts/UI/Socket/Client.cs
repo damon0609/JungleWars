@@ -74,10 +74,22 @@ public class Client
     //向服务器发送数据
     public void SendData(string msg)
     {
+        byte[] strBytes = Encoding.UTF8.GetBytes(msg);
+        Debug.Log("文本长度:"+strBytes.Length);
+        byte[] lenBytes = BitConverter.GetBytes(strBytes.Length);
+        Debug.Log("记录文本长度的长度:" + lenBytes.Length);
+        byte[] bytes = new byte[lenBytes.Length+strBytes.Length];
+
+        lenBytes.CopyTo(bytes,0);
+        strBytes.CopyTo(bytes,lenBytes.Length);
+        SendData(bytes);
+    }
+
+    public void SendData(byte[] bytes)
+    {
         if (m_Connected)
         {
-            byte[] temp = Encoding.UTF8.GetBytes(msg);
-            m_Socket.BeginSend(temp,0,temp.Length,SocketFlags.None,ar=> {
+            m_Socket.BeginSend(bytes, 0, bytes.Length, SocketFlags.None, ar => {
                 try
                 {
                     int length = m_Socket.EndSend(ar);
@@ -90,11 +102,16 @@ public class Client
                 {
                     Close();
                 }
-            },null);
+            }, null);
         }
     }
 
-    
+    public void SendData(NetworkStream stream)
+    {
+        SendData(stream.data);
+    }
+
+
     public void Close()
     {
         Debug.Log("关闭客户端连接");

@@ -15,6 +15,16 @@ public class NetworkManager : Singleton<NetworkManager>
         client.SendData(msg);
     }
 
+    public void SendAsync(byte[] bytes)
+    {
+        client.SendData(bytes);
+    }
+
+    public void SendAsync(NetworkStream stream)
+    {
+        client.SendData(stream);
+    }
+
     public void Close()
     {
         client.Close();
