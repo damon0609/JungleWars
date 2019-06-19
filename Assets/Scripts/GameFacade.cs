@@ -21,20 +21,18 @@ public class GameFacade : MonoBehaviour {
     }
 
     public EventHandler<string> event01 = new EventHandler<string>();
+    private float timer = 0.5f;
+    private int index;
 
     void Awake()
     {
         _instance = this;
-       networkManager = NetworkManager.instance;
-
+        networkManager = NetworkManager.instance;
         resManager = ResourcesManager.instance;
         uiManager = UIManager.instance;
     }
 	void Start () {
-        for (int i = 0; i < 10; i++)
-        {
-            networkManager.SendAsync(i+"");
-        }
+       
     }
     void Update () {
 
@@ -43,7 +41,15 @@ public class GameFacade : MonoBehaviour {
             if (event01 != null)
                 event01.Invoke("Hello damon!");
         }
-	}
+
+        timer -= Time.deltaTime;
+        if (timer <= 0.0f)
+        {
+            index++;
+            timer = 0.5f;
+            networkManager.SendAsync("damon 你好!" + index);
+        }
+    }
     void OnDestroy()
     {
         networkManager.Close();
