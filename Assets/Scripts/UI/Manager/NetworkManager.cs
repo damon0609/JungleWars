@@ -2,7 +2,7 @@
 
 public class NetworkManager : Singleton<NetworkManager>
 {
-    private Client client;
+    public Client client;
     protected override void Init()
     {
 
@@ -10,6 +10,10 @@ public class NetworkManager : Singleton<NetworkManager>
         client.Init();
     }
 
+    public void SendAsync(NetPacket stream)
+    {
+        client.SendData(stream);
+    }
     public void SendAsync(string msg)
     {
         client.SendData(msg);

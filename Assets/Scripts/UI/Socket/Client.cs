@@ -78,6 +78,7 @@ public class Client
         Debug.Log("文本长度:"+strBytes.Length);
         byte[] lenBytes = BitConverter.GetBytes(strBytes.Length);
         Debug.Log("记录文本长度的长度:" + lenBytes.Length);
+
         byte[] bytes = new byte[lenBytes.Length+strBytes.Length];
 
         lenBytes.CopyTo(bytes,0);
@@ -111,6 +112,10 @@ public class Client
         SendData(stream.data);
     }
 
+    public void SendData(NetPacket stream)
+    {
+        SendData(stream.datas);
+    }
 
     public void Close()
     {

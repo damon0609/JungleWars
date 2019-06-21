@@ -47,7 +47,9 @@ public class GameFacade : MonoBehaviour {
         {
             index++;
             timer = 0.5f;
-            networkManager.SendAsync("damon 你好!" + index);
+            //networkManager.SendAsync("damon 你好!" + index);
+            NetPacket netPacket = new NetPacket(0,1000+index,(int)CommandType.Login,0,200,new string[2] { "damon01",NetworkManager.instance.client.socket.LocalEndPoint.ToString()});
+            networkManager.SendAsync(netPacket);
         }
     }
     void OnDestroy()
