@@ -86,6 +86,22 @@ public class Client
         SendData(bytes);
     }
 
+
+    public void SendData(SocketMessage message)
+    {
+        ByteArray byteArray = new ByteArray();
+        byteArray.Write(message.length);//向数组中写数据总长度
+        byteArray.Write((int)message.module);//向数组中写大模块分类
+        byteArray.Write((int)message.subModule);//向字节数组中写入小模块分类
+        byteArray.Write(message.message);//向字节数组中写入字符串消息
+
+        SendData(byteArray.GetBytes());
+
+
+        Debug.Log("长度:"+byteArray.ReadInt32()+"-"+(Module)byteArray.ReadInt32()+"-"+(SubModule)byteArray.ReadInt32()+"-"+byteArray.ReadStr());
+    }
+
+
     public void SendData(byte[] bytes)
     {
         if (m_Connected)

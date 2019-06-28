@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using UnityEngine;
 public enum CommandType:int
 {
     Login=1001,
@@ -101,22 +101,22 @@ public class NetPacket
             return;
 
         int crocode = BitConverter.ToInt32(datas, 0);
-        Console.WriteLine("消息校验码:" + crocode);
+        Debug.Log("消息校验码:" + crocode);
 
         int messageLen = BitConverter.ToInt32(datas, 4);
-        Console.WriteLine("消息总长度:" + messageLen);
+        Debug.Log("消息总长度:" + messageLen);
 
         int sessionID = BitConverter.ToInt32(datas, 8);
-        Console.WriteLine("身份ID:" + sessionID);
+        Debug.Log("身份ID:" + sessionID);
 
         int command = BitConverter.ToInt32(datas, 16);
-        Console.WriteLine("主命令:" + command);
+        Debug.Log("主命令:" + command);
 
         int subCommand = BitConverter.ToInt32(datas, 20);
-        Console.WriteLine("子命令:" + subCommand);
+        Debug.Log("子命令:" + subCommand);
 
         int encrypt = BitConverter.ToInt32(datas, 24);
-        Console.WriteLine("加密方式:" + encrypt);
+        Debug.Log("加密方式:" + encrypt);
 
         byte[] temp = new byte[messageLen];
         Array.Copy(datas, 28, temp, 0, temp.Length);
@@ -128,7 +128,7 @@ public class NetPacket
             byte[] message = new byte[strLen];
             Array.Copy(temp, index, message, 0, strLen);
             string str = Encoding.UTF8.GetString(message);
-            Console.WriteLine("字符串长度:" + strLen + "--" + str);
+            Debug.Log("字符串长度:" + strLen + "--" + str);
             index += strLen;
         }
 

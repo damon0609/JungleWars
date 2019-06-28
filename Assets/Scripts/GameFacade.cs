@@ -32,7 +32,12 @@ public class GameFacade : MonoBehaviour {
         uiManager = UIManager.instance;
     }
 	void Start () {
-       
+
+        //SocketMessage socketMessage = new SocketMessage(Module.Login, SubModule.Attack, "damon is strong");
+        //networkManager.SendAsync(socketMessage);
+
+        //SocketMessage socketMessage01 = new SocketMessage(Module.Role, SubModule.Walk, "damon02 is strong");
+        //networkManager.SendAsync(socketMessage01);
     }
     void Update () {
 
@@ -47,9 +52,16 @@ public class GameFacade : MonoBehaviour {
         {
             index++;
             timer = 0.5f;
-            //networkManager.SendAsync("damon 你好!" + index);
-            NetPacket netPacket = new NetPacket(0,1000+index,(int)CommandType.Login,0,200,new string[2] { "damon01",NetworkManager.instance.client.socket.LocalEndPoint.ToString()});
+
+            /*
+            NetPacket netPacket = new NetPacket(0,index,(int)CommandType.Login,10,200,new string[2] { "damon01",NetworkManager.instance.client.socket.LocalEndPoint.ToString()});
+            netPacket.ReadData();
             networkManager.SendAsync(netPacket);
+            */
+
+            SocketMessage socketMessage = new SocketMessage(Module.Login,SubModule.Attack,"damon is strong");
+            networkManager.SendAsync(socketMessage);
+
         }
     }
     void OnDestroy()
