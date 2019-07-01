@@ -12,8 +12,6 @@ public class ZTest01 : MonoBehaviour {
             Debug.Log(b);
         }
 	}
-	
-	
 	void Update () {
 		
 	}

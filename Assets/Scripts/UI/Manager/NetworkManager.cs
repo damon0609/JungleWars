@@ -6,9 +6,15 @@ public class NetworkManager : Singleton<NetworkManager>
     protected override void Init()
     {
 
-        client = new Client("192.168.1.109", 6688);
+        client = new Client("192.168.1.101", 6688);
         client.Init();
     }
+
+    public void SendAsync<T>(T data,MainCommand mainCommand,SubCommand subCommand)
+    {
+        client.SendData<T>(data,mainCommand,subCommand);
+    }
+
 
     public void SendAsync(SocketMessage stream)
     {

@@ -3,6 +3,23 @@ using System.Net.Sockets;
 using System.Net;
 using System;
 using System.Text;
+using ProtoBuf;
+using System.IO;
+
+public enum MainCommand:int
+{
+    Login=1000,
+    CreateRole,
+    Attack,
+}
+
+public enum SubCommand:int
+{
+    None=1000,
+    Login,
+    Register,
+    
+}
 
 public class Client
 {
@@ -85,8 +102,6 @@ public class Client
         strBytes.CopyTo(bytes,lenBytes.Length);
         SendData(bytes);
     }
-
-
     public void SendData(SocketMessage message)
     {
         ByteArray byteArray = new ByteArray();
@@ -96,12 +111,8 @@ public class Client
         byteArray.Write(message.message);//向字节数组中写入字符串消息
 
         SendData(byteArray.GetBytes());
-
-
         Debug.Log("长度:"+byteArray.ReadInt32()+"-"+(Module)byteArray.ReadInt32()+"-"+(SubModule)byteArray.ReadInt32()+"-"+byteArray.ReadStr());
     }
-
-
     public void SendData(byte[] bytes)
     {
         if (m_Connected)
@@ -111,8 +122,10 @@ public class Client
                 {
                     int length = m_Socket.EndSend(ar);
                     if (length == 0)
-                    {
                         Debug.Log("发送的数据字节长度为0");
+                    else
+                    {
+                        Debug.Log("发送字节长度:"+length);
                     }
                 }
                 catch (Exception e)
@@ -122,16 +135,40 @@ public class Client
             }, null);
         }
     }
-
     public void SendData(NetworkStream stream)
     {
         SendData(stream.data);
     }
-
     public void SendData(NetPacket stream)
     {
         SendData(stream.datas);
     }
+
+    public void SendData<T>(T data,MainCommand mainCommand,SubCommand subCommand)
+    {
+        byte[] bytes = null;
+        using (MemoryStream stream = new MemoryStream())
+        {
+            Serializer.Serialize<T>(stream,data);
+            byte[] messageBytes = stream.ToArray();
+
+            //消息头协议 积累消息长度+主命令+子命名+消息
+            bytes = new byte[12 + messageBytes.Length];
+            byte[] messageLenBytes = BitConverter.GetBytes(messageBytes.Length);
+            Array.Copy(messageLenBytes,0,bytes,0,4);
+            Array.Copy(messageBytes,0,bytes,12,messageBytes.Length);
+        }
+        byte[] mainBytes = BitConverter.GetBytes((int)mainCommand);
+        Array.Copy(mainBytes, 0, bytes, 4, 4);
+
+        byte[] subBytes = BitConverter.GetBytes((int)subCommand);
+        Array.Copy(mainBytes, 0, bytes, 8, 4);
+
+        SendData(bytes);
+    }
+
+
+
 
     public void Close()
     {

@@ -3,6 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UI;
 using System.Text;
+using ProtoBuf;
+
+[ProtoContract]
+public class LoginInfo
+{
+    [ProtoMember(1)]
+    public string name { get; set; }
+
+    [ProtoMember(2)]
+    public string password { get; set; }
+}
+
+[ProtoContract]
+public class Attack
+{
+    [ProtoMember(1)]
+    public float act { get; set; }
+}
 
 public class GameFacade : MonoBehaviour {
 
@@ -38,6 +56,9 @@ public class GameFacade : MonoBehaviour {
 
         //SocketMessage socketMessage01 = new SocketMessage(Module.Role, SubModule.Walk, "damon02 is strong");
         //networkManager.SendAsync(socketMessage01);
+
+        LoginInfo loginInfo = new LoginInfo { name="damon",password="CWH919609cwh"};
+        networkManager.SendAsync<LoginInfo>(loginInfo,MainCommand.Login,SubCommand.Login);
     }
     void Update () {
 
@@ -45,6 +66,12 @@ public class GameFacade : MonoBehaviour {
         {
             if (event01 != null)
                 event01.Invoke("Hello damon!");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Attack attack = new Attack { act = 1.9f };
+            networkManager.SendAsync<Attack>(attack, MainCommand.Attack, SubCommand.None);
         }
 
         timer -= Time.deltaTime;
@@ -59,8 +86,8 @@ public class GameFacade : MonoBehaviour {
             networkManager.SendAsync(netPacket);
             */
 
-            SocketMessage socketMessage = new SocketMessage(Module.Login,SubModule.Attack,"damon is strong");
-            networkManager.SendAsync(socketMessage);
+            //SocketMessage socketMessage = new SocketMessage(Module.Login,SubModule.Attack,"damon is strong");
+            //networkManager.SendAsync(socketMessage);
 
         }
     }
