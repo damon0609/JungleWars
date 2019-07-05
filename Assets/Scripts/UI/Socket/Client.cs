@@ -8,7 +8,8 @@ using System.IO;
 
 public enum MainCommand:int
 {
-    Login=1000,
+    None=1000,
+    Login,
     CreateRole,
     Attack,
 }
@@ -18,7 +19,6 @@ public enum SubCommand:int
     None=1000,
     Login,
     Register,
-    
 }
 
 public class Client
@@ -64,6 +64,52 @@ public class Client
         BeginReceive();
     }
 
+    void HandleMessage(byte[] bytes, int length)
+    {
+        byte[] temp = new byte[length];
+        Array.Copy(bytes, 0, temp, 0, length);
+
+        //接受到的消息总长度
+        if (length >= 12)
+        {
+            byte[] messageLenBytes = new byte[4];
+            Array.Copy(bytes, 0, messageLenBytes, 0, 4);
+            int messageLenth = BitConverter.ToInt32(messageLenBytes, 0);
+
+            byte[] mainComBytes = new byte[4];
+            Array.Copy(temp, 4, mainComBytes, 0, 4);
+            MainCommand mainCommand = (MainCommand)(BitConverter.ToInt32(mainComBytes, 0));
+
+            byte[] subComBytes = new byte[4];
+            Array.Copy(temp, 8, subComBytes, 0, 4);
+            SubCommand subCommand = (SubCommand)(BitConverter.ToInt32(subComBytes, 0));
+
+
+            byte[] messageBytes = new byte[messageLenth];
+            Array.Copy(temp, 12, messageBytes, 0, messageLenth);
+
+            if (mainCommand == MainCommand.Login)
+            {
+                using (MemoryStream stream = new MemoryStream(messageBytes))
+                {
+                    if (subCommand == SubCommand.Login)
+                    {
+
+                    }
+                    else if (subCommand == SubCommand.Register)
+                    {
+                        Debug.Log("注册成功:"+BitConverter.ToInt16(messageBytes,0));
+                    }
+                }
+            }
+        }
+        else if (length < 12)
+        {
+
+        }
+    }
+
+
     //接受到服务器数据
     private void BeginReceive()
     {
@@ -76,8 +122,9 @@ public class Client
                 {
                     m_Connected = false;
                     Close();
+                    return;
                 }
-                string msg = Encoding.UTF8.GetString(bytes,0,length);
+                HandleMessage(bytes,length);
                 BeginReceive();
             }
             catch (Exception e)
@@ -125,7 +172,7 @@ public class Client
                         Debug.Log("发送的数据字节长度为0");
                     else
                     {
-                        Debug.Log("发送字节长度:"+length);
+                        //Debug.Log("发送字节长度:"+length);
                     }
                 }
                 catch (Exception e)
@@ -162,7 +209,7 @@ public class Client
         Array.Copy(mainBytes, 0, bytes, 4, 4);
 
         byte[] subBytes = BitConverter.GetBytes((int)subCommand);
-        Array.Copy(mainBytes, 0, bytes, 8, 4);
+        Array.Copy(subBytes, 0, bytes, 8, 4);
 
         SendData(bytes);
     }

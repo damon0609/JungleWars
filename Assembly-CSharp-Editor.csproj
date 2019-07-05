@@ -291,6 +291,9 @@
  <Reference Include="DOTweenProEditor">
  <HintPath>D:/Damon/Year_2019/Private/Project_Unity/JungleWars/Assets/Demigiant/DOTweenPro/Editor/DOTweenProEditor.dll</HintPath>
  </Reference>
+ <Reference Include="protobuf-net">
+ <HintPath>D:/Damon/Year_2019/Private/Project_Unity/JungleWars/Assets/Plugin/protobuf-net.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>C:/Users/damon.cheng/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
@@ -308,9 +311,6 @@
  </Reference>
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>C:/Users/damon.cheng/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
- </Reference>
- <Reference Include="protobuf-net">
- <HintPath>D:/Damon/Year_2019/Private/Project_Unity/JungleWars/Assets/Plugin/protobuf-net.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

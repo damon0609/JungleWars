@@ -8,6 +8,7 @@ public class UserManager : Singleton<UserManager>
 {
     private const string pathJson = "/Data/UserList.json";
     private readonly string pathXML = "/Data/UserList.xml";
+
     private List<UserInfo> list = new List<UserInfo>();
 
     public UserManager()
@@ -18,7 +19,6 @@ public class UserManager : Singleton<UserManager>
         {
             xml.Load(pathXML);
             XmlNode root = xml.SelectSingleNode("root");
-
             if (root.ChildNodes.Count == 0) return;
 
             for (int i = 0; i < root.ChildNodes.Count; i++)
@@ -27,7 +27,7 @@ public class UserManager : Singleton<UserManager>
                 string name = el.GetAttribute("name");
                 string pass = el.GetAttribute("password");
 
-                UserInfo info = new UserInfo {name=name,password=int.Parse(pass) };
+                UserInfo info = new UserInfo {name=name,password=pass };
                 list.Add(info);
             }
         }

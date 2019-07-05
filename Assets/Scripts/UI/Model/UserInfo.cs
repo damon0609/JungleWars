@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using ProtoBuf;
 
 [System.Serializable]
+[ProtoContract]
 public class UserInfo
 {
+    [ProtoMember(1)]
     public string name;
-    public int password;
+    [ProtoMember(2)]
+    public string password;
+    [ProtoMember(3)]
     public string email;
 
     public override string ToString()

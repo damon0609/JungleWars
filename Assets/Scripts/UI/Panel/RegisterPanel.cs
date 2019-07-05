@@ -31,7 +31,7 @@ namespace UI
         private bool isExistUser = false;
 
 
-        #region 检查密码 用户名 密码是否合法
+        #region 检查密码 用户名 是否合法
         private void CheckPassword(string str)
         {
             //包含大小写字符和数字且不能包含特殊字符
@@ -127,12 +127,14 @@ namespace UI
                     });
                 return;
             }
-            UserInfo info = new UserInfo { name = name, password = int.Parse(passStr), email = emailStr };
+            UserInfo info = new UserInfo { name = name, password = passStr, email = emailStr };
             bool success = UserManager.instance.RegisterUser(info);
             if (success)
             {
                 tipsText.DOFade(1.0f, 0.3f);
                 tipsText.text = successRegister;
+
+                GameFacade.instance.networkManager.SendAsync<UserInfo>(info,MainCommand.Login,SubCommand.Register);
             }
             else
             {

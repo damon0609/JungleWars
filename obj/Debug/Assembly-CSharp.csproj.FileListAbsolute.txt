@@ -145,3 +145,4 @@ D:\Damon\Year_2019\Private\Project_Unity\JungleWars\obj\Debug\Assembly-CSharp.cs
 D:\Damon\Year_2019\Private\Project_Unity\JungleWars\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 D:\Damon\Year_2019\Private\Project_Unity\JungleWars\obj\Debug\Assembly-CSharp.dll
 D:\Damon\Year_2019\Private\Project_Unity\JungleWars\obj\Debug\Assembly-CSharp.pdb
+D:\Damon\Year_2019\Private\Project_Unity\JungleWars\Temp\bin\Debug\protobuf-net.dll

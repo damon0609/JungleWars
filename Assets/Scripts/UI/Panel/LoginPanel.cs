@@ -38,7 +38,7 @@ namespace UI
         private void LoginBtnCallBack()
         {
             string nameStr = userName.text;
-            int passwordValue = int.Parse(password.text);
+            string passwordValue = password.text;
 
             UserInfo info = new UserInfo { name = nameStr, password = passwordValue };
             isLogin = UserManager.instance.CheckLoginState(info);

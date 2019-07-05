@@ -270,6 +270,9 @@
  <Reference Include="DOTweenPro">
  <HintPath>D:/Damon/Year_2019/Private/Project_Unity/JungleWars/Assets/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
  </Reference>
+ <Reference Include="protobuf-net">
+ <HintPath>D:/Damon/Year_2019/Private/Project_Unity/JungleWars/Assets/Plugin/protobuf-net.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>C:/Users/damon.cheng/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.13/UnityEngine.Analytics.dll</HintPath>
  </Reference>
@@ -278,9 +281,6 @@
  </Reference>
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>C:/Users/damon.cheng/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
- </Reference>
- <Reference Include="protobuf-net">
- <HintPath>D:/Damon/Year_2019/Private/Project_Unity/JungleWars/Assets/Plugin/protobuf-net.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
