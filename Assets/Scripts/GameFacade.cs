@@ -46,6 +46,9 @@ public class GameFacade : MonoBehaviour {
     private float timer = 0.5f;
     private int index;
 
+
+    public Canvas uiCanvas;
+
     //服务器上地址
     private const string path = @"D:\Damon\Year_2019\Private\Project_C#\服务器\接受Protobuf数据的服务器\bin\Debug\userList.txt";
     private string dataStr;
@@ -56,12 +59,20 @@ public class GameFacade : MonoBehaviour {
         //通过www在后台将用户数据下载到本地
         //StartCoroutine(LoadData());
 
-        
+        /*
         networkManager = NetworkManager.instance;
         resManager = ResourcesManager.instance;
         uiManager = UIManager.instance;
+        */
     }
+
+    void Init()
+    {
+        
+    }
+
 	void Start () {
+
 
         #region Test 部分
         //SocketMessage socketMessage = new SocketMessage(Module.Login, SubModule.Attack, "damon is strong");
@@ -110,7 +121,7 @@ public class GameFacade : MonoBehaviour {
     }
     void OnDestroy()
     {
-        networkManager.Close();
+        //networkManager.Close();
     }
 
     /*

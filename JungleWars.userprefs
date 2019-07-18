@@ -1,0 +1,19 @@
+﻿<Properties StartupConfiguration="{2B065D79-4879-221C-0AD0-4078C75F545D}|单元测试">
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Tool/Editor/ActivityEditorWindow.cs">
+    <Files>
+      <File FileName="Assets/Scripts/GameFrame/Activity.cs" Line="8" Column="15" />
+      <File FileName="Assets/Scripts/GameFacade.cs" Line="71" Column="9" />
+      <File FileName="Assets/Scripts/GameFrame/LoginActivity.cs" Line="18" Column="9" />
+      <File FileName="Assets/Scripts/Tool/Editor/MenuTool.cs" Line="17" Column="59" />
+      <File FileName="Assets/Scripts/Tool/Editor/ActivityEditorWindow.cs" Line="109" Column="10" />
+      <File FileName="Assets/Scripts/GameFrame/ActivttyManager.cs" Line="15" Column="9" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
