@@ -87,29 +87,7 @@ public class ActivityEditorWindow : EditorWindow
         //先创建Activity
         CreateActivity();
         CreateActivityView();
-
-        if(Event.current.type==EventType.MouseDown&&Event.current.button==0)
-        {
-        }
-        if(Event.current.type==EventType.MouseUp&&Event.current.button==0)
-        {
-            Debug.Log("鼠标弹起:"+Event.current.mousePosition);
-        }
-
-        if(EventType.ScrollWheel==Event.current.type)
-        {
-            Debug.Log("gui 上事件监听");
-        }
-
-        if(Event.current.type==EventType.MouseEnterWindow)
-        {
-            Debug.Log("鼠标进入窗口");
-        }
-        if(Event.current.type==EventType.MouseLeaveWindow)
-        {
-            Debug.Log("离开窗口");
-        }
-
+        
         /*
 
         EditorGUILayout.LabelField("Create");
