@@ -57,10 +57,10 @@
      <Compile Include="Assets\Scripts\GameFrame\Activity.cs" />
      <Compile Include="Assets\Scripts\GameFrame\ActivttyManager.cs" />
      <Compile Include="Assets\Scripts\GameFrame\LoginActivity.cs" />
+     <Compile Include="Assets\Scripts\ListView\ListViewGroup.cs" />
+     <Compile Include="Assets\Scripts\ListView\ListViewItem.cs" />
      <Compile Include="Assets\Scripts\UI\Event\EventBase.cs" />
      <Compile Include="Assets\Scripts\UI\Event\EventHandler.cs" />
-     <Compile Include="Assets\Scripts\UI\ListView\ListViewGroup.cs" />
-     <Compile Include="Assets\Scripts\UI\ListView\ListViewItem.cs" />
      <Compile Include="Assets\Scripts\UI\Manager\IUIPanel.cs" />
      <Compile Include="Assets\Scripts\UI\Manager\NetworkManager.cs" />
      <Compile Include="Assets\Scripts\UI\Manager\ResourcesManager.cs" />
